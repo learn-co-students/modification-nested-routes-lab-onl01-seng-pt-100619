@@ -40,7 +40,7 @@ end
         @artist = Artist.find_by(id: params[:artist_id])
         @song = @artist.songs.find_by(id: params[:id])
         if @song.nil?
-          redirect_to artist_songs_path(@artist), alert: "Song not found"
+          redirect_to artist_songs_path(@artist), alert: "Song not found! Damm't!"
         end
       else
         @song = Song.find(params[:id])
@@ -84,6 +84,7 @@ end
     def edit
       @song = Song.find(params[:id])
     end
+
     def edit
     if params[:artist_id]
       artist = Artist.find_by(id: params[:artist_id])
@@ -93,9 +94,9 @@ end
         @song = artist.songs.find_by(id: params[:id])
         redirect_to artist_songs_path(artist), alert: "Song not found" if @song.nil?
       end
-    else
-      @song = Song.find(params[:id])
-    end
+      else
+        @song = Song.find(params[:id])
+      end
     end
 
     def update
